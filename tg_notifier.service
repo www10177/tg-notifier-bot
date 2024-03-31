@@ -1,0 +1,13 @@
+[Unit]
+Description=TG_NOTIFIER
+After=network.target
+
+[Service]
+User=www10177
+Group=www10177
+WorkingDirectory=/home/www10177/side_project/tg-notifier-bot
+Environment="PATH=/home/www10177/side_project/tg-notifier-bot/.venv/bin"
+ExecStart=/home/www10177/side_project/tg-notifier-bot/.venv/bin/python /home/www10177/side_project/tg-notifier-bot/main.py
+
+[Install]
+WantedBy=multi-user.target

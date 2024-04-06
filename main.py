@@ -8,9 +8,6 @@ from functools import partial
 
 from tg_notifier import SocketServer, TGUserBot, TGClient
 
-        
-
-
 def start_socket():
     server=  SocketServer(os.environ['SOCKET_PATH'])
     server.setup()
@@ -19,19 +16,25 @@ def start_socket():
 def start_TGClient():
     client = TGClient()
     client.start()
+
+def start_TGUserBot():
+    bot = TGUserBot()
+    bot.start()
     
 def set_logger():
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format="[%(threadName)s]%(message)s"
     )
+
+    
 
 def main():
     load_dotenv()
     set_logger()
     threads =  [
         threading.Thread(target=start_socket),
-        threading.Thread(target=start_TGClient)
+        threading.Thread(target=start_TGUserBot)
         
     ]
     [t.start() for t in threads]

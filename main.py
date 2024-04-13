@@ -24,17 +24,15 @@ def start_TGUserBot():
 def set_logger():
     logging.basicConfig(
         level=logging.DEBUG,
-        format="[%(threadName)s]%(message)s"
+        format="%(threadName)s-[%(levelname)s] %(message)s"
     )
-
-    
 
 def main():
     load_dotenv()
     set_logger()
     threads =  [
-        threading.Thread(target=start_socket),
-        threading.Thread(target=start_TGUserBot)
+        threading.Thread(name="Socket", target=start_socket),
+        threading.Thread(name="TG",target=start_TGUserBot)
         
     ]
     [t.start() for t in threads]

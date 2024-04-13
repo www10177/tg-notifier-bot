@@ -1,7 +1,7 @@
 import logging
 import socket
 import os 
-import  tg_notifier.share as s 
+import tg_notifier.share as s 
 class SocketServer:
     def __init__(self,file:str):
         self.file:str=file
@@ -11,6 +11,7 @@ class SocketServer:
     def callback(self,msg:str)->bool:
         logging.info(f"<< {msg}")
         s.MSG_QUEUE.put(msg)
+        logging.info(f"{msg} Putted ")
         
     def setup(self):
         if os.path.exists(self.file):

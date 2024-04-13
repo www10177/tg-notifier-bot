@@ -1,2 +1,4 @@
 .env
-*.session*
+msg_queue 
+__pycache__
+*.duckdb
